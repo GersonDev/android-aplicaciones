@@ -1,4 +1,4 @@
-package com.example.android_aplicaciones
+package com.example.android_aplicaciones.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
