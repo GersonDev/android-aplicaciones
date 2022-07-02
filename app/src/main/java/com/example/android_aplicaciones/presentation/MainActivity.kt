@@ -47,12 +47,12 @@ class MainActivity : ComponentActivity() {
             Button(onClick = onClickButtonTwo, content = {
                 Text("Ver estado de Cuentas")
             })
-            Button(onClick = {}, content = {
+            /*Button(onClick = {}, content = {
                 Text("Escanear tarjetas para ingresar al tren")
             })
             Button(onClick = {}, content = {
                 Text("Recargar Tarjeta")
-            })
+            })*/
         }
     }
 
