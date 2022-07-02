@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.android_aplicaciones.R
 import com.example.android_aplicaciones.domain.models.Person
+import com.example.android_aplicaciones.presentation.components.MenuPrincipalPantalla
 import com.example.android_aplicaciones.presentation.components.RegistroDeTarjetaPantalla
 import com.example.android_aplicaciones.presentation.components.VerEstadoDeCuentaPantalla
 
@@ -67,34 +68,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-private fun MenuPrincipalPantalla(onClickButtonOne: () -> Unit, onClickButtonTwo: () -> Unit) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            painter = painterResource(id = R.drawable.metro1),
-            contentDescription = "Logo Linea1"
-        )
-        Button(onClick = onClickButtonOne, content = {
-            Text("Venta de Tarjetas")
-        })
-        Button(onClick = onClickButtonTwo, content = {
-            Text("Ver estado de Cuentas")
-        })
-        /*Button(onClick = {}, content = {
-            Text("Escanear tarjetas para ingresar al tren")
-        })
-        Button(onClick = {}, content = {
-            Text("Recargar Tarjeta")
-        })*/
-    }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun MenuPrincipalPreview() {
-    MenuPrincipalPantalla(onClickButtonOne = { /*TODO*/ }, onClickButtonTwo = {})
-}
+
 
