@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     navController.navigate(Screen.MenuPrincipal.route)
                 }
                 composable(Screen.EstadoDeCuenta.route) {
-
+                    /*TODO*/
                 }
             }
         }
