@@ -1,4 +1,6 @@
 package com.example.android_aplicaciones.domain.models
 
-class Card {
-}
+data class Card(
+    val codigo: String,
+    val balance: Double
+)
