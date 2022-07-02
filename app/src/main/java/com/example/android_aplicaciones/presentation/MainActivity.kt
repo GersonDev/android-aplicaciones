@@ -37,8 +37,19 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 composable(Screen.Registrar.route) {
-
-                    navController.navigate(Screen.MenuPrincipal.route)
+                    RegistroDeTarjetaPantalla(
+                        onClickButtonRegistrar = {
+                            navController.navigate(Screen.MenuPrincipal.route)
+                        },
+                        nombre = "",
+                        apellido = "",
+                        dni = "",
+                        monto = "",
+                        onValueChangeNombre = {},
+                        onValueChangeApellido = {},
+                        onValueChangeDni = {},
+                        onValueChangeMonto = {}
+                    )
                 }
                 composable(Screen.EstadoDeCuenta.route) {
                     /*TODO*/
