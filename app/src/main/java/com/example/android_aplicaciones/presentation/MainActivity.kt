@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
@@ -19,6 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.android_aplicaciones.R
+import com.example.android_aplicaciones.domain.models.Person
+import com.example.android_aplicaciones.presentation.components.RegistroDeTarjetaPantalla
+import com.example.android_aplicaciones.presentation.components.VerEstadoDeCuentaPantalla
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +54,13 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 composable(Screen.EstadoDeCuenta.route) {
-                    /*TODO*/
+                    VerEstadoDeCuentaPantalla(
+                        listOf(
+                            Person("Carlitos", "Vargas", 54545454),
+                            Person("Gerson", "Vargas", 54545454),
+                            Person("Ronaldo", "Vargas", 54545454)
+                        )
+                    )
                 }
             }
         }
