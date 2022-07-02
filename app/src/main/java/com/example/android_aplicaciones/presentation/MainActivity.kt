@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
                 composable(Screen.Registrar.route) {
                     RegistroDeTarjetaPantalla(
                         onClickButtonRegistrar = {
-                            
                             navController.navigate(Screen.MenuPrincipal.route)
                         },
                         nombre = "",
