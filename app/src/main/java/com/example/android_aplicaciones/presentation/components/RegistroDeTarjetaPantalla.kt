@@ -1,4 +1,4 @@
-package com.example.android_aplicaciones.presentation
+package com.example.android_aplicaciones.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
@@ -63,7 +63,7 @@ fun RegistroDeTarjetaPantalla(
 
 @Preview
 @Composable
-fun RegistroDeTarjetaPantallaPreview() {
+private fun RegistroDeTarjetaPantallaPreview() {
     RegistroDeTarjetaPantalla(onClickButtonRegistrar = {},
         nombre = "",
         apellido = "",
