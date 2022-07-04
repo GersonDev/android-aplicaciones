@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
@@ -19,25 +21,34 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.android_aplicaciones.R
 import com.example.android_aplicaciones.domain.models.Person
-import com.example.android_aplicaciones.presentation.components.MenuPrincipalPantalla
-import com.example.android_aplicaciones.presentation.components.RegistroDeTarjetaPantalla
-import com.example.android_aplicaciones.presentation.components.VerEstadoDeCuentaPantalla
+import com.example.android_aplicaciones.presentation.components.*
+import com.example.android_aplicaciones.ui.theme.AndroidaplicacionesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val openDialogState = remember { mutableStateOf(false) }
             val navController = rememberNavController()
             NavHost(navController, startDestination = Screen.MenuPrincipal.route) {
                 composable(Screen.MenuPrincipal.route) {
                     MenuPrincipalPantalla(
-                        {
+                        onClickButtonOne = {
                             navController.navigate(Screen.Registrar.route)
                         },
-                        {
+                        onClickButtonTwo = {
                             navController.navigate(Screen.EstadoDeCuenta.route)
+                        },
+                        onClickIngresarAlTrenButton = {
+                            openDialogState.value = true
                         }
                     )
+                    if (openDialogState.value) {
+                        IngresarAlTrenDialog(onConfirmButtonClick = {
+                            // TODO disminuir el 1.50 el saldo del cliente
+                            openDialogState.value = false
+                        })
+                    }
                 }
                 composable(Screen.Registrar.route) {
                     RegistroDeTarjetaPantalla(
