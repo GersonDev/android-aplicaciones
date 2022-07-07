@@ -1,11 +1,15 @@
 package com.example.android_aplicaciones.presentation.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.android_aplicaciones.domain.models.Card
 import com.example.android_aplicaciones.domain.models.Person
 import com.example.android_aplicaciones.domain.repositories.CardsRepository
 import com.example.android_aplicaciones.domain.repositories.PersonsRepository
+import kotlinx.coroutines.launch
 
 class MenuViewModel : ViewModel() {
     private val _nombre = MutableLiveData("")
@@ -18,6 +22,9 @@ class MenuViewModel : ViewModel() {
     val monto: LiveData<String> = _monto
     private val _mostrarError = MutableLiveData(false)
     val mostrarError: LiveData<Boolean> = _mostrarError
+
+    private val _listOfCards = MutableLiveData<List<Card>>(listOf())
+    val listOfCards: LiveData<List<Card>> = _listOfCards
 
 
     private val cardsRepository = CardsRepository()
@@ -58,6 +65,27 @@ class MenuViewModel : ViewModel() {
             personsRepository.addPersonQueue(person)
         } else {
             _mostrarError.value = true
+        }
+    }
+
+    fun llenaLaBaseDeDatos(context: Context) {
+        viewModelScope.launch {
+            cardsRepository.insertCard(context, Card("A1", 10.00))
+            cardsRepository.insertCard(context, Card("A2", 10.00))
+            cardsRepository.insertCard(context, Card("A3", 10.00))
+            cardsRepository.insertCard(context, Card("A4", 10.00))
+            cardsRepository.insertCard(context, Card("A5", 10.00))
+            cardsRepository.insertCard(context, Card("A6", 10.00))
+            cardsRepository.insertCard(context, Card("A7", 10.00))
+            cardsRepository.insertCard(context, Card("A8", 10.00))
+            cardsRepository.insertCard(context, Card("A9", 10.00))
+            cardsRepository.insertCard(context, Card("A10", 10.00))
+        }
+    }
+
+    fun getAllTheCards(context: Context) {
+        viewModelScope.launch {
+            _listOfCards.value = cardsRepository.getAllTheCards(context)
         }
     }
 }
