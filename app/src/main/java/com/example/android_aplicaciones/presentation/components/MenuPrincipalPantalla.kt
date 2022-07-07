@@ -15,7 +15,12 @@ import androidx.compose.ui.unit.dp
 import com.example.android_aplicaciones.R
 
 @Composable
-fun MenuPrincipalPantalla(onClickButtonOne: () -> Unit, onClickButtonTwo: () -> Unit, onClickIngresarAlTrenButton: () -> Unit) {
+fun MenuPrincipalPantalla(
+    onClickButtonOne: () -> Unit,
+    onClickButtonTwo: () -> Unit,
+    onClickIngresarAlTrenButton: () -> Unit,
+    onClickDatabaseButton: () -> Unit
+) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             modifier = Modifier
@@ -40,14 +45,21 @@ fun MenuPrincipalPantalla(onClickButtonOne: () -> Unit, onClickButtonTwo: () -> 
             Text("Ingresar al tren", color = Color.White)
         }, colors = ButtonDefaults.buttonColors(backgroundColor = Color.Magenta))
 
+        Button(onClick = onClickDatabaseButton, content = {
+            Text("Prueba de Base de Datos", color = Color.White)
+        }, colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green))
+
         PeruBandera()
     }
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun MenuPrincipalPreview() {
-    MenuPrincipalPantalla(onClickButtonOne = { /*TODO*/ }, onClickButtonTwo = {}, onClickIngresarAlTrenButton = {})
+    MenuPrincipalPantalla(onClickButtonOne = { /*TODO*/ },
+        onClickButtonTwo = {},
+        onClickIngresarAlTrenButton = {},
+        onClickDatabaseButton = {}
+    )
 }

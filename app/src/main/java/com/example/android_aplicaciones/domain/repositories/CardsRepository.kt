@@ -1,23 +1,32 @@
 package com.example.android_aplicaciones.domain.repositories
 
+import android.content.Context
+import com.example.android_aplicaciones.data.datasources.DatabaseDataSource
+import com.example.android_aplicaciones.data.datasources.MemoryDataSource
 import com.example.android_aplicaciones.domain.models.Card
-import com.example.android_aplicaciones.utils.datastructure.Stack
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CardsRepository {
-    private val cards: Stack<Card> = Stack()
 
-    init {
-        cards.push(Card("A1", 10.00))
-        cards.push(Card("A2", 10.00))
-        cards.push(Card("A3", 10.00))
-        cards.push(Card("A4", 10.00))
-        cards.push(Card("A5", 10.00))
-        cards.push(Card("A6", 10.00))
-        cards.push(Card("A7", 10.00))
-        cards.push(Card("A8", 10.00))
-        cards.push(Card("A9", 10.00))
-    }
+    private val memoryDataSource = MemoryDataSource()
+    private val databaseDataSource = DatabaseDataSource()
+
     fun popFirstCard(): Card? {
-        return cards.pop()
+        return memoryDataSource.popFirstCard()
     }
+
+    suspend fun getAllTheCards(context: Context): List<Card> {
+        return withContext(Dispatchers.IO) {
+            databaseDataSource.getAllTheCards(context)
+        }
+    }
+
+    suspend fun insertCard(context: Context, card: Card) {
+        return withContext(Dispatchers.IO) {
+            databaseDataSource.insertCard(context, card)
+        }
+    }
+
 }
